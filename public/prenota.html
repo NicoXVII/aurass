@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenota il tuo Appuntamento | Aurass Barbershop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #171a21;
+            --accent-gold: #c5a059;
+            --accent-gold-hover: #d4af66;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #262a36;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .booking-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+        }
+
+        select.form-control option {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent-gold), #a37f3e);
+            border: none;
+            border-radius: 10px;
+            color: #0f1115;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.25);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, var(--accent-gold-hover), var(--accent-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(197, 160, 89, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="brand-header">
+            <h1>AURASS</h1>
+            <p>Esclusività & Cura del Dettaglio</p>
+        </div>
+
+        <div class="booking-card">
+            <form action="/api/prenota" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome e Cognome</label>
+                    <input type="text" id="nome" name="nome" class="form-control" placeholder="Es. Mario Rossi" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Numero di Telefono</label>
+                    <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Es. 333 1234567" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servizio">Servizio Desiderato</label>
+                    <select id="servizio" name="servizio" class="form-control" required>
+                        <option value="" disabled selected>Seleziona un servizio...</option>
+                        <option value="Taglio Corto / Barber">Taglio Style / Barber</option>
+                        <option value="Taglio + Barba">Taglio + Barba Combo</option>
+                        <option value="Barba Ritual">Ritual Barba & Panno Caldo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="data">Data e Ora Appuntamento</label>
+                    <input type="datetime-local" id="data" name="data" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Conferma Prenotazione</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

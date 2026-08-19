@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Staff | Aurass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #171a21;
+            --accent-gold: #c5a059;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #262a36;
+            --error-red: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+        }
+
+        /* BANNER DI ERRORE */
+        .error-alert {
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error-red);
+            color: var(--error-red);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-gold), #a37f3e);
+            border: none;
+            border-radius: 10px;
+            color: #0f1115;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>AURASS STAFF</h2>
+        <p class="subtitle">Accesso Riservato al Personale</p>
+
+        <!-- AVVISO PASSWORD ERRATA -->
+        <div id="error-alert" class="error-alert">
+            ⚠️ Password errata, riprovare!
+        </div>
+
+        <form action="/admin/login" method="POST">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Inserisci la password" required autofocus>
+            </div>
+            <button type="submit" class="btn-submit">Accedi</button>
+        </form>
+    </div>
+
+    <script>
+        // Se nell'URL è presente ?error=true, mostra l'avviso di errore
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('error') === 'true') {
+            document.getElementById('error-alert').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
